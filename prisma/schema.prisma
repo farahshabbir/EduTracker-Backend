@@ -26,6 +26,8 @@ model Class {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
+  createdBy String?
+  updatedBy String?
 
   students       Student[]
   subjectClasses SubjectClass[]
@@ -47,6 +49,8 @@ model Student {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
+  createdBy String?
+  updatedBy String?
 
   class           Class            @relation(fields: [classId], references: [id])
   scores          StudentScore[]
@@ -66,6 +70,8 @@ model Subject {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
+  createdBy String?
+  updatedBy String?
 
   subjectClasses SubjectClass[]
 }
@@ -83,6 +89,8 @@ model SubjectClass {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
+  createdBy String?
+  updatedBy String?
 
   studentSubjects StudentSubject[]
   scores          StudentScore[]
@@ -98,6 +106,8 @@ model StudentSubject {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
+  createdBy String?
+  updatedBy String?
 
   student      Student      @relation(fields: [studentId], references: [id])
   subjectClass SubjectClass @relation(fields: [subjectClassId], references: [id])
@@ -115,6 +125,8 @@ model Test {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
+  createdBy String?
+  updatedBy String?
 
   class  Class          @relation(fields: [classId], references: [id])
   scores StudentScore[]
@@ -133,6 +145,8 @@ model StudentScore {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
+  createdBy String?
+  updatedBy String?
 
   student      Student      @relation(fields: [studentId], references: [id])
   test         Test         @relation(fields: [testId], references: [id])
@@ -150,4 +164,6 @@ model GradeScale {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
+  createdBy String?
+  updatedBy String?
 }
