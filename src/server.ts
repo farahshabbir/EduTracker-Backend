@@ -4,11 +4,18 @@ import prisma from './lib/prisma.js';
 
 const PORT = env.port || 5000;
 
-app.listen(PORT, () => {
-  console.info(`Server running on port ${PORT}`);
-});
+async function startServer() {
+  try {
+    await prisma.$connect();
+    console.info('Database connected');
 
-prisma
-  .$connect()
-  .then(() => console.info('Database connected'))
-  .catch(console.error);
+    app.listen(PORT, () => {
+      console.info(`Server running on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error('Failed to start server', error);
+    process.exit(1);
+  }
+}
+
+startServer();
